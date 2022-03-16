@@ -1,0 +1,404 @@
+﻿<Window x:Class="CalculatorResult.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CalculatorResult"
+        mc:Ignorable="d"
+        Title="Калькулятор" Height="525" Width="340" Background="Black">
+    <DockPanel LastChildFill="True">
+
+        <TextBlock 
+            x:Name="OutputText"
+            DockPanel.Dock="Top" 
+            Text="" TextAlignment="Right" 
+            FontFamily="Bahnschrift Condensed" FontSize="50" 
+            Opacity="0.9">
+            <TextBlock.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="White" Offset="0"/>
+                    <GradientStop Color="#FFACEFDD" Offset="1"/>
+                </LinearGradientBrush>
+            </TextBlock.Background>
+        </TextBlock>
+
+        <Grid DockPanel.Dock="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Button 
+                x:Name="Power"
+                Click="PowerClick"
+                Grid.Row="3" Grid.RowSpan="2" 
+                Content="*" 
+                FontFamily="Wide Latin" FontSize="36" FontStyle="Normal" FontWeight="Bold">
+                <Button.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.BorderBrush>
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF373737" Offset="1"/>
+                        <GradientStop Color="#FF97F4E9" Offset="0"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            
+            <Button 
+                x:Name="Plus"
+                Click="PlusClick"
+                Grid.Row="1" Grid.RowSpan="2" 
+                Content="+" 
+                FontFamily="Wide Latin" FontSize="36" FontStyle="Normal" FontWeight="Bold">
+                <Button.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.BorderBrush>
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF373737" Offset="1"/>
+                        <GradientStop Color="#FF97F4E9" Offset="0"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            
+            <Button 
+                x:Name="Minus"
+                Click="MinusClick"
+                Grid.ColumnSpan="2" 
+                Content="-" 
+                FontFamily="Wide Latin" FontSize="36" FontStyle="Normal" FontWeight="Bold">
+                <Button.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.BorderBrush>
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF373737" Offset="1"/>
+                        <GradientStop Color="#FF97F4E9" Offset="0"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            
+            <Button 
+                x:Name="Divide"
+                Click="DivideClick"
+                Grid.Column="2" Grid.ColumnSpan="2" 
+                Content="/" 
+                FontFamily="Wide Latin" FontSize="36" FontStyle="Normal" FontWeight="Bold">
+                <Button.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.BorderBrush>
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF373737" Offset="1"/>
+                        <GradientStop Color="#FF97F4E9" Offset="0"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            
+            <Button 
+                x:Name="Clear"
+                Click="ClearClick"
+                Grid.Row="4" Grid.Column="3" 
+                Content="AC" 
+                FontFamily="Wide Latin" FontSize="28" FontStyle="Normal" FontWeight="Bold">
+                <Button.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.BorderBrush>
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF373737" Offset="1"/>
+                        <GradientStop Color="#FF97F4E9" Offset="0"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+
+            <Button 
+                x:Name="Result"
+                Click="ResultClick"
+                Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="3" 
+                Content="ИТОГО = " 
+                FontFamily="Wide Latin" FontSize="36" FontStyle="Normal" FontWeight="Bold">
+                <Button.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.BorderBrush>
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF373737" Offset="1"/>
+                        <GradientStop Color="#FF97F4E9" Offset="0"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+
+            <Button
+                x:Name="Invert"
+                Click="InvertClick"
+                Grid.Row="5"
+                Content="+/-" 
+                FontFamily="Wide Latin" FontSize="36" FontStyle="Normal" FontWeight="Bold">
+                <Button.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.BorderBrush>
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF373737" Offset="1"/>
+                        <GradientStop Color="#FF97F4E9" Offset="0"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+
+            
+            <Button 
+                x:Name="OneBtn"
+                Click="NumPudClick"
+                Grid.Row="1" Grid.Column="1" 
+                Content="1" 
+                FontFamily="Wide Latin" FontSize="36" FontStyle="Normal" FontWeight="Bold">
+                <Button.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.BorderBrush>
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF373737" Offset="1"/>
+                        <GradientStop Color="#FF97F4E9" Offset="0"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            
+            <Button 
+                x:Name="TwoBtn"
+                Click="NumPudClick"
+                Grid.Row="1" Grid.Column="2" 
+                Content="2" 
+                FontFamily="Wide Latin" FontSize="36" FontStyle="Normal" FontWeight="Bold">
+                <Button.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.BorderBrush>
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF373737" Offset="1"/>
+                        <GradientStop Color="#FF97F4E9" Offset="0"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            
+            <Button 
+                x:Name="ThreeBtn"
+                Click="NumPudClick"
+                Grid.Row="1" Grid.Column="3" 
+                Content="3" 
+                FontFamily="Wide Latin" FontSize="36" FontStyle="Normal" FontWeight="Bold">
+                <Button.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.BorderBrush>
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF373737" Offset="1"/>
+                        <GradientStop Color="#FF97F4E9" Offset="0"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            
+            <Button 
+                x:Name="FourBtn"
+                Click="NumPudClick"
+                Grid.Row="2" Grid.Column="1" 
+                Content="4" 
+                FontFamily="Wide Latin" FontSize="36" FontStyle="Normal" FontWeight="Bold">
+                <Button.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.BorderBrush>
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF373737" Offset="1"/>
+                        <GradientStop Color="#FF97F4E9" Offset="0"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            
+            <Button 
+                x:Name="FiveBtn"
+                Click="NumPudClick"
+                Grid.Row="2" Grid.Column="2" 
+                Content="5" 
+                FontFamily="Wide Latin" FontSize="36" FontStyle="Normal" FontWeight="Bold">
+                <Button.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.BorderBrush>
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF373737" Offset="1"/>
+                        <GradientStop Color="#FF97F4E9" Offset="0"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            
+            <Button 
+                x:Name="SixBtn"
+                Click="NumPudClick"
+                Grid.Row="2" Grid.Column="3" 
+                Content="6" 
+                FontFamily="Wide Latin" FontSize="36" FontStyle="Normal" FontWeight="Bold">
+                <Button.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.BorderBrush>
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF373737" Offset="1"/>
+                        <GradientStop Color="#FF97F4E9" Offset="0"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            
+            <Button 
+                x:Name="SevenBtn"
+                Click="NumPudClick"
+                Grid.Row="3" Grid.Column="1" 
+                Content="7" 
+                FontFamily="Wide Latin" FontSize="36" FontStyle="Normal" FontWeight="Bold">
+                <Button.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.BorderBrush>
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF373737" Offset="1"/>
+                        <GradientStop Color="#FF97F4E9" Offset="0"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            
+            <Button 
+                x:Name="EightBtn"
+                Click="NumPudClick"
+                Grid.Row="3" Grid.Column="2" 
+                Content="8" 
+                FontFamily="Wide Latin" FontSize="36" FontStyle="Normal" FontWeight="Bold">
+                <Button.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.BorderBrush>
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF373737" Offset="1"/>
+                        <GradientStop Color="#FF97F4E9" Offset="0"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            
+            <Button 
+                x:Name="NineBtn"
+                Click="NumPudClick"
+                Grid.Row="3" Grid.Column="3" 
+                Content="9" 
+                FontFamily="Wide Latin" FontSize="36" FontStyle="Normal" FontWeight="Bold">
+                <Button.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.BorderBrush>
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF373737" Offset="1"/>
+                        <GradientStop Color="#FF97F4E9" Offset="0"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            
+            <Button 
+                x:Name="ZeroBtn"
+                Click="NumPudClick"
+                Grid.Row="4" Grid.Column="2" 
+                Content="0" 
+                FontFamily="Wide Latin" FontSize="36" FontStyle="Normal" FontWeight="Bold">
+                <Button.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.BorderBrush>
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF373737" Offset="1"/>
+                        <GradientStop Color="#FF97F4E9" Offset="0"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+
+            <Button 
+                x:Name="PointBtn"
+                Click="NumPudClick"
+                Grid.Row="4" Grid.Column="1" 
+                Content="," 
+                FontFamily="Wide Latin" FontSize="36" FontStyle="Normal" FontWeight="Bold">
+                <Button.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.BorderBrush>
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF373737" Offset="1"/>
+                        <GradientStop Color="#FF97F4E9" Offset="0"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+
+        </Grid>
+    </DockPanel>
+
+</Window>
